@@ -18,3 +18,14 @@
 
   document.querySelectorAll('main section[id]').forEach(function (s) { observer.observe(s); });
 })();
+
+// When switching language, land on the same section of the other page.
+(function () {
+  document.querySelectorAll('.lang-switch a:not([aria-current])').forEach(function (a) {
+    a.addEventListener('click', function () {
+      var active = document.querySelector('.site-nav a.active');
+      var hash = active ? active.getAttribute('href') : '';
+      if (hash && hash !== '#about') a.href = a.href.split('#')[0] + hash;
+    });
+  });
+})();

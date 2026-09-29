@@ -16,6 +16,16 @@
   --sans: "Source Sans 3", "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
 }
 
+/* Chinese page (zh/): Latin text keeps Source Sans/Serif, CJK falls through to these */
+html[lang|="zh"] {
+  --sans: "Source Sans 3", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+  --serif: "Source Serif 4", "Noto Serif SC", "Songti SC", "SimSun", serif;
+}
+html[lang|="zh"] body { line-height: 1.8; }
+html[lang|="zh"] .tl-sub { font-style: normal; }
+html[lang|="zh"] :is(.site-nav a, .links a, .related a, .pub-links a, .venue) { line-height: 1.62; }
+html[lang|="zh"] .block > h2, html[lang|="zh"] .h2-sub { letter-spacing: .04em; }
+
 *, *::before, *::after { box-sizing: border-box; }
 
 html {
@@ -73,10 +83,26 @@ sup { line-height: 0; }
 .site-nav a.active { color: var(--accent); background: var(--accent-soft); }
 .site-nav .nav-cv { border: 1px solid var(--rule); margin-left: 4px; }
 
+.lang-switch {
+  display: inline-flex; flex: none; gap: 2px; padding: 3px; margin-left: -6px;
+  background: var(--surface); border: 1px solid var(--rule); border-radius: 999px;
+}
+.lang-switch a {
+  font-size: .82rem; font-weight: 700; line-height: 1; letter-spacing: .02em;
+  padding: 6px 10px; border-radius: 999px; color: var(--muted);
+  transition: color .15s, background .15s;
+}
+.lang-switch a:hover { color: var(--accent); text-decoration: none; }
+.lang-switch a[aria-current] { background: var(--accent); color: #fff; }
+
 @media (max-width: 719px) {
-  .header-inner { flex-direction: column; align-items: stretch; gap: 0; padding-top: 10px; }
+  .header-inner {
+    display: grid; grid-template-columns: 1fr auto; align-items: center;
+    gap: 0; padding-top: 10px;
+  }
   .brand { padding-bottom: 4px; }
-  .site-nav { margin: 0 -16px; padding: 4px 12px 8px; }
+  .lang-switch { grid-column: 2; grid-row: 1; margin: 0 0 4px; }
+  .site-nav { grid-column: 1 / -1; grid-row: 2; margin: 0 -16px; padding: 4px 12px 8px; }
   .site-nav a { padding: 5px 8px; font-size: .9rem; }
 }
 
@@ -94,6 +120,11 @@ section[id] { scroll-margin-top: calc(var(--header-h) + 12px); }
   box-shadow: 0 0 0 4px var(--surface), 0 0 0 5px var(--rule), 0 10px 28px rgba(31, 58, 95, .16);
 }
 .hero h1 { font-size: clamp(2.2rem, 5vw, 2.9rem); font-weight: 700; letter-spacing: -.01em; }
+.name-alt {
+  font-size: .48em; font-weight: 600; letter-spacing: 0;
+  color: var(--muted); margin-left: .55em; white-space: nowrap;
+}
+html[lang|="zh"] .hero h1 { letter-spacing: .06em; }
 .role { font-size: 1.2rem; font-weight: 600; margin: 6px 0 2px; }
 .affil { color: var(--muted); margin: 0 0 2px; }
 .affil a {
