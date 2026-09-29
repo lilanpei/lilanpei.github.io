@@ -1,0 +1,9 @@
+# LaTeX sources and build files stay local; only the compiled CV PDF is published.
+*.tex
+*.aux
+*.log
+*.out
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+.DS_Store
