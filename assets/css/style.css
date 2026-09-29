@@ -109,6 +109,12 @@ section[id] { scroll-margin-top: calc(var(--header-h) + 12px); }
 .hero h1 { font-size: clamp(2.2rem, 5vw, 2.9rem); font-weight: 700; letter-spacing: -.01em; }
 .role { font-size: 1.2rem; font-weight: 600; margin: 6px 0 2px; }
 .affil { color: var(--muted); margin: 0 0 2px; }
+.affil a {
+  color: inherit; text-decoration: underline; text-decoration-thickness: 1px;
+  text-decoration-color: color-mix(in srgb, var(--muted) 45%, transparent);
+  transition: color .15s, text-decoration-color .15s;
+}
+.affil a:hover { color: var(--link); text-decoration-color: currentColor; }
 .place { color: var(--muted); margin: 0; font-size: .95rem; display: flex; align-items: center; gap: 6px; }
 .dot { color: var(--rule); margin: 0 .15em; }
 @media (prefers-color-scheme: dark) { .dot { color: var(--muted); } }
